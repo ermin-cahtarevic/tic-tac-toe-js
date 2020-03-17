@@ -10,11 +10,13 @@ const displayController = (() => {
     });
   }
 
-  const addPlayers = document.getElementById('add-players');
   const toggleGame = document.getElementById('toggle-game');
   const input = document.getElementById('input');
-  const playerNameToggle = document.getElementById('player-1');
-  const player2NameToggle = document.getElementById('player-2');
+  const player1NameToggle = document.getElementById('player1-next');
+  const player2NameToggle = document.getElementById('player2-next');
+  const player1Input = document.getElementById('player-1');
+  const player2Input = document.getElementById('player-2');
+  const playerNames = document.getElementById('player-names');
 
   toggleGame.onclick = () => {
     const boardWrap = document.getElementById('board');
@@ -22,26 +24,41 @@ const displayController = (() => {
     input.classList.toggle('d-none');
 
     if (toggleGame.innerHTML === "Start Game") {
-      toggleGame.innerHTML = "New Game";
+      toggleGame.innerHTML = "Restart Game";
     } else {
       toggleGame.innerHTML = "Start Game";
     }
   };
 
-  addPlayers.onclick = () => {
-    const players = ();
+  const players = [];
+  let playerOne = {};
+  let playerTwo = {};
 
-    if(players[0] === '') { players[0] = 'Player X' };
-    if(players[1] === '') { players[1] = 'Player O' };
-    
-    const playerOne = players[0];
-    const playerTwo = players[1];
+  player1NameToggle.onclick = () => {
+    let player1 = document.getElementById('name1').value;
+    if(player1 === '') { player1 = 'Player X' };
+    players.push(player1);
+    player1Input.classList.toggle('d-none');
+    player2Input.classList.toggle('d-none');
+    playerOne = Player(players[0]);
   };
+
+  player2NameToggle.onclick = () => {
+    let player2 = document.getElementById('name2').value;
+    if(player2 === '') { player2 = 'Player O' };
+    players.push(player2);
+    player2Input.classList.toggle('d-none');
+    toggleGame.classList.toggle('d-none');
+    playerNames.innerHTML = `
+      ${players[0]} vs ${players[1]}`;
+    playerTwo = Player(players[1]);
+  };
+  
 
   return { display }
 })();
 
 
 
-displayController.display(board);
+displayController.display(gameBoard.board());
 

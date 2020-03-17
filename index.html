@@ -9,27 +9,28 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    
+    <h1>Hi welcome to tic tac toe game!</h1>
+
     <div id="input" class="">
-      <h1>Hi welcome to tic tac toe game!</h1>
       <div class="" id="player-1">
         <p>Enter Player One's name below or press next to use default names</p>
         <label for="name" class="player-input">Player One</label>
         <input type="text" id="name1" placeholder="Player X">
         <button id="player1-next">Next</button>
       </div>
-      <div class="" id="player-2">
+      <div class="d-none" id="player-2">
         <p>Enter Player Two's name below or press next to use default names</p>
         <label for="name" class="player-input">Player Two</label>
         <input type="text" id="name2" placeholder="Player O">
-        <button id="player1-next">Next</button>
+        <button id="player2-next">Next</button>
       </div>
-      <button id="add-players">Add Player</button>
     </div>
 
     <div id="board" class="d-none"></div>
 
-    <button id="toggle-game">Start Game</button>
+    <div id="player-names"></div>
+    <button class="d-none" id="toggle-game">Start Game</button>
+    <button class="d-none" id="restart-game">Restart with new players</button>
 
     <script src="./js/main.js" type="module"></script>
   </body>

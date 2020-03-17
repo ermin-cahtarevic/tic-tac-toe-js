@@ -1,9 +1,15 @@
 const gameBoard = (() => {
-  const board = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
+
+  const board = () => {
+    return ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X'];
+  }
+
+  return { board }
 })();
 
-const Player = name => { name };
-
+const Player = (name) => { 
+  return { name } 
+};
 
 
 export { gameBoard, Player };

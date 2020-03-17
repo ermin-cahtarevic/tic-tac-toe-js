@@ -6,12 +6,12 @@
 }
 
 #board div {
-  width: 30%;
-  height: 50px;
+  width: 33.3%;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid lightgray;
-  margin: 5px;
-  font-size: 30px;
+  margin: 0;
+  font-size: 2em;
 }

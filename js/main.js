@@ -12,6 +12,7 @@ const displayController = (() => {
   };
 
   const toggleGame = document.getElementById('toggle-game');
+  const restart = document.getElementById('restart');
   const input = document.getElementById('input');
   const player1NameToggle = document.getElementById('player1-next');
   const player2NameToggle = document.getElementById('player2-next');
@@ -28,16 +29,16 @@ const displayController = (() => {
 
     gameBoard.play([Player(players[0]), 'X'], [Player(players[1]), 'O']);
 
-    if (toggleGame.innerHTML === 'Start Game') {
-      toggleGame.innerHTML = 'Restart Game';
-      document.getElementById('restart-game').classList.add('d-none');
-    } else {
-      toggleGame.innerHTML = 'Start Game';
-      gameBoard.clearBoard();
-      document.getElementById('restart-game').classList.add('d-none');
-      playerNames.innerText = `${players[0]} vs ${players[1]}`;
-      gameBoard.play([Player(players[0]), 'X'], [Player(players[1]), 'O']);
-    }
+    restart.classList.toggle('d-none');
+    toggleGame.classList.toggle('d-none');
+    document.getElementById('restart-game').classList.add('d-none');
+  };
+
+  restart.onclick = () => {
+    gameBoard.clearBoard();
+    document.getElementById('restart-game').classList.add('d-none');
+    playerNames.innerText = `${players[0]} vs ${players[1]}`;
+    gameBoard.play([Player(players[0]), 'X'], [Player(players[1]), 'O']);
   };
 
   renewGame.onclick = () => {

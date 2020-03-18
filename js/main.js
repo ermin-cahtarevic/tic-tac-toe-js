@@ -29,6 +29,7 @@ const displayController = (() => {
       toggleGame.innerHTML = 'Restart Game';
     } else {
       toggleGame.innerHTML = 'Start Game';
+      gameBoard.clearBoard();
     }
   };
 

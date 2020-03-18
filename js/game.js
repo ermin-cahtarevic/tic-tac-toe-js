@@ -47,6 +47,8 @@ const gameBoard = (() => {
     // updates the board with players input
     playBoard.addEventListener('click', function listener(element) {
       console.log(currentPlayer);
+      // console.log(document.getElementById('board').querySelectorAll('div').value);
+
 
       // checks if position is ocupied
       if (element.target.innerText === 'X' || element.target.innerText === 'O') {
@@ -68,16 +70,17 @@ const gameBoard = (() => {
     // checks for draw
   };
 
-  // const playerTurn = () => {
-
-  // };
-
   const clearBoard = () => {
-
+    // document.getElementById('board').querySelectorAll('div').innerHTML = '';
+    document.getElementById('board').querySelectorAll('div').forEach((el) => {
+      el.innerText = '';
+    });
   };
 
 
-  return { board, play, checkWins };
+  return {
+    board, play, checkWins, clearBoard,
+  };
 })();
 
 const Player = (name) => ({ name });

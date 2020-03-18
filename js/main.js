@@ -15,6 +15,7 @@ const displayController = (() => {
   const player1Input = document.getElementById('player-1');
   const player2Input = document.getElementById('player-2');
   const playerNames = document.getElementById('player-names');
+  const renewGame = document.getElementById('restart-game');
   const players = [];
 
   toggleGame.onclick = () => {
@@ -29,6 +30,10 @@ const displayController = (() => {
     } else {
       toggleGame.innerHTML = 'Start Game';
     }
+  };
+
+  renewGame.onclick = () => {
+    window.location.reload(true);
   };
 
 

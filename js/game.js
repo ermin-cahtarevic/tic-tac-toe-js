@@ -30,12 +30,8 @@ const gameBoard = (() => {
     return [response, player];
   };
 
-  const checkDraws = (player, move) => {
-    // for (let i = 0; i < board.length; i++) {
-    //   // if board[i] === undefined && response === false {}
-
-    }
-  }
+  const checkDraws = () => {
+  };
 
   const play = (player1Array, player2Array) => {
     const playerOne = player1Array[0];
@@ -51,6 +47,7 @@ const gameBoard = (() => {
     // updates the board with players input
     playBoard.addEventListener('click', function listener(element) {
       console.log(currentPlayer);
+
       // checks if position is ocupied
       if (element.target.innerText === 'X' || element.target.innerText === 'O') {
         return;
@@ -61,19 +58,19 @@ const gameBoard = (() => {
       if (checkWins(currentPlayer, currentMove)[0]) {
         playBoard.removeEventListener('click', listener);
         winner = checkWins(currentPlayer, currentMove)[1];
+        document.getElementById('restart-game').classList.remove('d-none');
       }
       currentPlayer = (currentPlayer === playerOne ? playerTwo : playerOne);
       currentMove = (currentMove === Xplay ? Oplay : Xplay);
     });
     return winner;
 
-    //checks for draw
-    if ()
+    // checks for draw
   };
 
-  const playerTurn = () => {
+  // const playerTurn = () => {
 
-  };
+  // };
 
   const clearBoard = () => {
 

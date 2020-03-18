@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+
 import { gameBoard, Player } from './game.js';
 
 const displayController = (() => {
@@ -5,6 +7,7 @@ const displayController = (() => {
     const divBoard = document.getElementById('board');
     board.map((element, index) => {
       divBoard.innerHTML += `<div id="${index}">${element}</div>`;
+      return true;
     });
   };
 

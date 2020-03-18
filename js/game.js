@@ -26,6 +26,7 @@ const gameBoard = (() => {
         response = true;
         playerNames.innerHTML = `${player.name} wins!`;
       }
+      return response;
     });
 
     return [response, player];
@@ -37,7 +38,7 @@ const gameBoard = (() => {
     document.getElementById('board').querySelectorAll('div').forEach((el) => {
       positions.push(el.innerText);
     });
-    if(positions.every(position => { return position !== '' })) {
+    if (positions.every((position) => position !== '')) {
       result = true;
     } else {
       result = false;
@@ -57,9 +58,9 @@ const gameBoard = (() => {
     let winner = '';
 
     // updates the board with players input
-    playBoard.addEventListener('click', function listener(element) {
-  
+    playBoard.addEventListener('click', function listener(el) {
       // checks if position is ocupied
+      const element = el;
       if (element.target.innerText === 'X' || element.target.innerText === 'O') {
         return;
       }
@@ -69,12 +70,12 @@ const gameBoard = (() => {
       if (checkWins(currentPlayer, currentMove)[0]) {
         playerNames.innerHTML = `${currentPlayer} wins!`;
         playBoard.removeEventListener('click', listener);
-        winner = checkWins(currentPlayer, currentMove)[1];
+        [winner] = checkWins(currentPlayer, currentMove);
         document.getElementById('restart-game').classList.remove('d-none');
         return;
       }
 
-      if(checkDraws()) {
+      if (checkDraws()) {
         playerNames.innerHTML = "It's a draw!";
         playBoard.removeEventListener('click', listener);
         document.getElementById('restart-game').classList.remove('d-none');
@@ -86,8 +87,8 @@ const gameBoard = (() => {
   };
 
   const clearBoard = () => {
-    // document.getElementById('board').querySelectorAll('div').innerHTML = '';
-    document.getElementById('board').querySelectorAll('div').forEach((el) => {
+    document.getElementById('board').querySelectorAll('div').forEach((element) => {
+      const el = element;
       el.innerText = '';
     });
   };

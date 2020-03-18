@@ -27,9 +27,13 @@ const displayController = (() => {
 
     if (toggleGame.innerHTML === 'Start Game') {
       toggleGame.innerHTML = 'Restart Game';
+      document.getElementById('restart-game').classList.add('d-none');
     } else {
       toggleGame.innerHTML = 'Start Game';
       gameBoard.clearBoard();
+      document.getElementById('restart-game').classList.add('d-none');
+      playerNames.innerText = `${players[0]} vs ${players[1]}`;
+      gameBoard.play([Player(players[0]), 'X'], [Player(players[1]), 'O']);
     }
   };
 

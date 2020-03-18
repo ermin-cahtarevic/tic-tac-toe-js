@@ -1,10 +1,10 @@
-# Library-Javascript
+# Tic Tac Toe
 
-> A simple library page built with javascript and DOM.
+> A tic tac toe game built with vanilla javascript and DOM.
 
-![screenshot]()
+![screenshot](./src/img/screenshot.png)
 
-Additional description about the project and its features.
+In this project, we are building a Tic Tac Toe game (Again) but this time it’s being rendered in the browser. No backend. This project is geared towards employing the Factory Functions and The Module Pattern logic. The main goal was to put into practice these concepts along with the main concepts of Object-Oriented Programming. Particularly, classes/objects and how to access their methods and attributes.
 
 ## Built With
 
@@ -14,7 +14,7 @@ Additional description about the project and its features.
 
 ## Live Demo
 
-[Live Demo Link]()
+[Live Demo Link](https://raw.githack.com/ermin-cahtarevic/tic-tac-toe-js/feature/ticTacToe/index.html)
 
 ## Getting Started
 
@@ -25,7 +25,7 @@ To get a local copy up and running follow these simple example steps.
 ### Setup and installation
 
 ```
-git clone git@github.com:ChristianOtieno/library-javascript.git
+git clone git@github.com:ermin-cahtarevic/tic-tac-toe-js.git
 ```
 
 ### Usage

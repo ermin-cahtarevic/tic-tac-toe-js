@@ -23,6 +23,8 @@ const displayController = (() => {
     boardWrap.classList.toggle('d-none');
     input.classList.toggle('d-none');
 
+    gameBoard.play([Player(players[0]), 'X'], [Player(players[1]), 'O'])
+
     if (toggleGame.innerHTML === "Start Game") {
       toggleGame.innerHTML = "Restart Game";
     } else {
@@ -31,8 +33,6 @@ const displayController = (() => {
   };
 
   const players = [];
-  let playerOne = {};
-  let playerTwo = {};
 
   player1NameToggle.onclick = () => {
     let player1 = document.getElementById('name1').value;
@@ -40,7 +40,6 @@ const displayController = (() => {
     players.push(player1);
     player1Input.classList.toggle('d-none');
     player2Input.classList.toggle('d-none');
-    playerOne = Player(players[0]);
   };
 
   player2NameToggle.onclick = () => {
@@ -51,9 +50,7 @@ const displayController = (() => {
     toggleGame.classList.toggle('d-none');
     playerNames.innerHTML = `
       ${players[0]} vs ${players[1]}`;
-    playerTwo = Player(players[1]);
   };
-  
 
   return { display }
 })();

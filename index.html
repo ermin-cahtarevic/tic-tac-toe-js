@@ -9,29 +9,27 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
-    <h1>Hi welcome to tic tac toe game!</h1>
-
-    <div id="input" class="">
-      <div class="" id="player-1">
-        <p>Enter Player One's name below or press next to use default names</p>
-        <label for="name" class="player-input">Player One</label>
-        <input type="text" id="name1" placeholder="Player X">
-        <button id="player1-next">Next</button>
+    <div  class="container main">
+      <h1 class="h1">Hi! Welcome to the Tic Tac Toe Game!</h1>
+      <div id="input" class="col-md-8">
+        <div id="player-1">
+          <p class="h6">Enter Player One's name below or press next to use default names:</p>
+          <label for="name" class="player-input">Player One</label>
+          <input type="text" id="name1" class= "form-control" placeholder="Player X">
+          <button id="player1-next" class="btn btn-primary">Next</button>
+        </div>
+        <div class="d-none" id="player-2">
+          <p>Enter Player Two's name below or press next to use default names:</p>
+          <label for="name" class="player-input">Player Two</label>
+          <input type="text" id="name2" class= "form-control"  placeholder="Player O">
+          <button id="player2-next" class="btn btn-primary">Next</button>
+        </div>
       </div>
-      <div class="d-none" id="player-2">
-        <p>Enter Player Two's name below or press next to use default names</p>
-        <label for="name" class="player-input">Player Two</label>
-        <input type="text" id="name2" placeholder="Player O">
-        <button id="player2-next">Next</button>
-      </div>
-    </div>
-
-    <div id="board" class="d-none"></div>
-
-    <div id="player-names"></div>
-    <button class="d-none" id="toggle-game">Start Game</button>
-    <button class="d-none" id="restart-game">Restart with new players</button>
-
+      <div id="board" class="d-none"></div>
+      <div id="player-names"></div>
+      <button class="d-none btn btn-danger" id="toggle-game" >Start Game</button>
+      <button class="d-none btn btn-secondary" id="restart-game">Restart with new players</button>
+    </div>>
     <script src="./js/main.js" type="module"></script>
   </body>
 </html>

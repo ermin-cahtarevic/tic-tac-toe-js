@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="src/css/style.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>Tic Tac Toe</title>
-</head>
-<body>
-  
-  <script src="js/main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Tic Tac Toe</title>
+  </head>
+  <body>
+    <div  class="container main">
+      <h1 class="h1">Hi! Welcome to the Tic Tac Toe Game!</h1>
+      <div id="input" class="col-md-8">
+        <div id="player-1">
+          <p class="h6">Enter Player One's name below or press next to use default names:</p>
+          <label for="name" class="player-input">Player One</label>
+          <input type="text" id="name1" class= "form-control" placeholder="Player X">
+          <button id="player1-next" class="btn btn-primary">Next</button>
+        </div>
+        <div class="d-none" id="player-2">
+          <p>Enter Player Two's name below or press next to use default names:</p>
+          <label for="name" class="player-input">Player Two</label>
+          <input type="text" id="name2" class= "form-control"  placeholder="Player O">
+          <button id="player2-next" class="btn btn-primary">Next</button>
+        </div>
+      </div>
+      <div id="board" class="d-none"></div>
+      <div id="player-names"></div>
+      <button class="d-none btn btn-danger" id="toggle-game" >Start Game</button>
+      <button class="d-none btn btn-danger" id="restart">Restart Game</button>
+      <button class="d-none btn btn-secondary" id="restart-game">Restart with new players</button>
+    </div>>
+    <script src="./js/main.js" type="module"></script>
+  </body>
 </html>

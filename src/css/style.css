@@ -1,0 +1,60 @@
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: url("../img/bg_image.jpg");
+}
+.container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: aliceblue;
+}
+#board {
+  background-color: rgba(0, 0, 0, 0.3);
+  background-position: 50% 5%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 500px;
+  height: 500px;
+  margin: 50px auto;
+}
+
+#board div {
+  margin: 0;
+  width: 33.3%;
+  height: 33.3%;
+  display: flex;
+  font-size: 5em;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid lightgray;
+}
+#input {
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  height: 250px;
+  display: grid;
+  justify-content: center;
+}
+
+#player-1, #player-2 {
+  height: 90%;
+  display: grid;
+  padding-top: 8%;
+  justify-content: center;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bolder;
+}
+#player-names{
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+  font-weight: bolder;
+  background-color: rgba(0, 0, 0, 0.3);
+
+}
+

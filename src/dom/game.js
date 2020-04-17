@@ -15,14 +15,20 @@ const gameBoard = (() => {
 
   const playerNames = document.getElementById('player-names');
 
-  const checkWins = (player, move) => {
+  const checkWins = (player, move, testBoard = ['', '', '', '', '', '', '', '', '']) => {
     let response = false;
     winningCombinations.map((combo) => {
       const one = document.getElementById(combo[0]);
       const two = document.getElementById(combo[1]);
       const three = document.getElementById(combo[2]);
-
-      if ((one.innerText === move) && (two.innerText === move) && (three.innerText === move)) {
+      
+      if ((testBoard[combo[0]] === move) && (testBoard[combo[1]] === move) && (testBoard[combo[2]] === move)) {
+        response = true;
+      }
+      if (response === true) {
+        return response;
+      }
+      if ((one.innerHTML === move) && (two.innerHTML === move) && (three.innerHTML === move)) {
         response = true;
         playerNames.innerHTML = `${player.name} wins!`;
       }
@@ -32,7 +38,12 @@ const gameBoard = (() => {
     return [response, player];
   };
 
-  const checkDraws = () => {
+  const checkDraws = (testBoard = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']) => {
+    const testResult = testBoard.every(position => {
+      return position !== ' ';
+    });
+    if (testResult) return true;
+
     const positions = [];
     let result = false;
     document.getElementById('board').querySelectorAll('div').forEach((el) => {
@@ -95,7 +106,7 @@ const gameBoard = (() => {
 
 
   return {
-    board, play, checkWins, clearBoard,
+    board, play, checkWins, checkDraws, clearBoard,
   };
 })();
 

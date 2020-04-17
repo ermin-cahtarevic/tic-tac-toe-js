@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import '~bootstrap/scss/bootstrap';
+
 body{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-image: url("../img/bg_image.jpg");
+  background-image: url("./img/bg_image.jpg");
 }
 .container {
   display: grid;
@@ -57,4 +60,3 @@ body{
   background-color: rgba(0, 0, 0, 0.3);
 
 }
-

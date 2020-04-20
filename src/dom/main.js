@@ -1,7 +1,7 @@
 import gameBoard from './game';
 
-const displayController = (() => {
-  let { board } = gameBoard;
+const displayController = () => {
+  let { board } = gameBoard();
 
   const display = (board) => {
     const divBoard = document.getElementById('board');
@@ -39,14 +39,14 @@ const displayController = (() => {
       board[element.target.id] = currentMove;
 
       // checks for winner
-      if (gameBoard.checkWins(currentMove, board)) {
+      if (gameBoard().checkWins(currentMove, board)) {
         playBoard.removeEventListener('click', listener);
         playerNames.innerHTML = `${currentPlayer} wins!`;
         document.getElementById('restart-game').classList.remove('d-none');
         return;
       }
 
-      if (gameBoard.checkDraws(board)) {
+      if (gameBoard().checkDraws(board)) {
         playerNames.innerHTML = "It's a draw!";
         playBoard.removeEventListener('click', listener);
         document.getElementById('restart-game').classList.remove('d-none');
@@ -73,7 +73,7 @@ const displayController = (() => {
       el.innerText = '';
     });
 
-    board = gameBoard.clearBoard(board);
+    board = gameBoard().clearBoard(board);
     document.getElementById('restart-game').classList.add('d-none');
     play();
     playerNames.innerText = `${players[0]} vs ${players[1]}`;
@@ -104,6 +104,5 @@ const displayController = (() => {
   };
 
   return { display };
-})();
-
-displayController.display(gameBoard.board);
+};
+displayController().display(gameBoard().board);

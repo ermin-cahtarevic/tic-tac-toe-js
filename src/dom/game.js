@@ -1,4 +1,4 @@
-const gameBoard = (() => {
+const gameBoard = () => {
   const board = ['', '', '', '', '', '', '', '', ''];
 
   // winning permutations
@@ -44,6 +44,6 @@ const gameBoard = (() => {
   return {
     board, checkWins, checkDraws, clearBoard,
   };
-})();
+};
 
 export default gameBoard;

@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-  const board = () => ['', '', '', '', '', '', '', '', ''];
+  let board =  ['', '', '', '', '', '', '', '', ''];
 
   // winning permutations
   const winningCombinations = [
@@ -13,103 +13,37 @@ const gameBoard = (() => {
     [2, 4, 6],
   ];
 
-  const playerNames = document.getElementById('player-names');
-
-  const checkWins = (player, move, testBoard = ['', '', '', '', '', '', '', '', '']) => {
+  const checkWins = (move, board) => {
     let response = false;
     winningCombinations.map((combo) => {
-      const one = document.getElementById(combo[0]);
-      const two = document.getElementById(combo[1]);
-      const three = document.getElementById(combo[2]);
-      
-      if ((testBoard[combo[0]] === move) && (testBoard[combo[1]] === move) && (testBoard[combo[2]] === move)) {
+      const one = board[combo[0]];
+      const two = board[combo[1]];
+      const three = board[combo[2]];
+      if ((one === move) && (two === move) && (three === move)) {
         response = true;
-      }
-      if (response === true) {
-        return response;
-      }
-      if ((one.innerHTML === move) && (two.innerHTML === move) && (three.innerHTML === move)) {
-        response = true;
-        playerNames.innerHTML = `${player.name} wins!`;
       }
       return response;
     });
-
-    return [response, player];
+    return response;
   };
 
-  const checkDraws = (testBoard = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']) => {
-    const testResult = testBoard.every(position => {
-      return position !== ' ';
-    });
-    if (testResult) return true;
-
-    const positions = [];
+  const checkDraws = (board) => {
     let result = false;
-    document.getElementById('board').querySelectorAll('div').forEach((el) => {
-      positions.push(el.innerText);
-    });
-    if (positions.every((position) => position !== '')) {
+    if (board.every((position) => position !== '')) {
       result = true;
-    } else {
-      result = false;
-    }
+    } 
     return result;
   };
 
-  const play = (player1Array, player2Array) => {
-    const playerOne = player1Array[0];
-    const Xplay = player1Array[1];
-    const playerTwo = player2Array[0];
-    const Oplay = player2Array[1];
-
-    let currentMove = Xplay;
-    let currentPlayer = playerOne;
-    const playBoard = document.getElementById('board');
-    let winner = '';
-
-    // updates the board with players input
-    playBoard.addEventListener('click', function listener(el) {
-      // checks if position is ocupied
-      const element = el;
-      if (element.target.innerText === 'X' || element.target.innerText === 'O') {
-        return;
-      }
-      element.target.innerText = currentMove;
-
-      // checks for winner
-      if (checkWins(currentPlayer, currentMove)[0]) {
-        playerNames.innerHTML = `${currentPlayer} wins!`;
-        playBoard.removeEventListener('click', listener);
-        [winner] = checkWins(currentPlayer, currentMove);
-        document.getElementById('restart-game').classList.remove('d-none');
-        return;
-      }
-
-      if (checkDraws()) {
-        playerNames.innerHTML = "It's a draw!";
-        playBoard.removeEventListener('click', listener);
-        document.getElementById('restart-game').classList.remove('d-none');
-      }
-      currentPlayer = (currentPlayer === playerOne ? playerTwo : playerOne);
-      currentMove = (currentMove === Xplay ? Oplay : Xplay);
-    });
-    return winner;
-  };
-
-  const clearBoard = () => {
-    document.getElementById('board').querySelectorAll('div').forEach((element) => {
-      const el = element;
-      el.innerText = '';
-    });
+  const clearBoard = (board) => {
+    board = ['', '', '', '', '', '', '', '', ''];
+    return board;
   };
 
 
   return {
-    board, play, checkWins, checkDraws, clearBoard,
+    board, checkWins, checkDraws, clearBoard,
   };
 })();
 
-const Player = (name) => ({ name });
-
-export { gameBoard, Player };
+export { gameBoard };

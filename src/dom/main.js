@@ -3,6 +3,8 @@
 import { gameBoard, Player } from './game.js';
 
 const displayController = (() => {
+  let board = gameBoard.board;
+   
   const display = (board) => {
     const divBoard = document.getElementById('board');
     board.map((element, index) => {
@@ -20,6 +22,7 @@ const displayController = (() => {
   const player2Input = document.getElementById('player-2');
   const playerNames = document.getElementById('player-names');
   const renewGame = document.getElementById('restart-game');
+  const playBoard = document.getElementById('board');
   const players = [];
 
   toggleGame.onclick = () => {
@@ -27,18 +30,21 @@ const displayController = (() => {
     boardWrap.classList.toggle('d-none');
     input.classList.toggle('d-none');
 
-    gameBoard.play([Player(players[0]), 'X'], [Player(players[1]), 'O']);
-
     restart.classList.toggle('d-none');
     toggleGame.classList.toggle('d-none');
     document.getElementById('restart-game').classList.add('d-none');
   };
 
   restart.onclick = () => {
-    gameBoard.clearBoard();
+    document.getElementById('board').querySelectorAll('div').forEach((element) => {
+      const el = element;
+      el.innerText = '';
+    });
+    
+    board = gameBoard.clearBoard(board);
     document.getElementById('restart-game').classList.add('d-none');
+    play();
     playerNames.innerText = `${players[0]} vs ${players[1]}`;
-    gameBoard.play([Player(players[0]), 'X'], [Player(players[1]), 'O']);
   };
 
   renewGame.onclick = () => {
@@ -62,9 +68,45 @@ const displayController = (() => {
     toggleGame.classList.toggle('d-none');
     playerNames.innerHTML = `
       ${players[0]} vs ${players[1]}`;
+    play();
   };
+
+  
+  const play = () => {
+    let currentMove = 'X';
+    let currentPlayer = players[0];
+    // updates the board with players input
+    playBoard.addEventListener('click', function listener(element) {
+      const playerOne = players[0];
+      const playerTwo = players[1];
+      
+      // checks if position is ocupied
+      if (element.target.innerText === 'X' || element.target.innerText === 'O') {
+        return;
+      }
+      element.target.innerText = currentMove;
+      board[element.target.id] = currentMove;
+
+      // checks for winner
+      if (gameBoard.checkWins(currentMove, board)) {
+        playBoard.removeEventListener('click', listener);
+        playerNames.innerHTML = `${currentPlayer} wins!`;
+        document.getElementById('restart-game').classList.remove('d-none');
+        return;
+      }
+
+      if (gameBoard.checkDraws(board)) {
+        playerNames.innerHTML = "It's a draw!";
+        playBoard.removeEventListener('click', listener);
+        document.getElementById('restart-game').classList.remove('d-none');
+      }
+
+      currentPlayer = (currentPlayer === playerOne ? playerTwo : playerOne);
+      currentMove = (currentMove === 'X' ? 'O' : 'X');
+    });
+  }
 
   return { display };
 })();
 
-displayController.display(gameBoard.board());
+displayController.display(gameBoard.board);

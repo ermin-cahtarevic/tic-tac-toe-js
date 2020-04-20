@@ -1,10 +1,8 @@
-/* eslint-disable import/extensions */
-
-import { gameBoard, Player } from './game.js';
+import gameBoard from './game';
 
 const displayController = (() => {
-  let board = gameBoard.board;
-   
+  let { board } = gameBoard;
+
   const display = (board) => {
     const divBoard = document.getElementById('board');
     board.map((element, index) => {
@@ -25,6 +23,40 @@ const displayController = (() => {
   const playBoard = document.getElementById('board');
   const players = [];
 
+  const play = () => {
+    let currentMove = 'X';
+    let currentPlayer = players[0];
+    // updates the board with players input
+    playBoard.addEventListener('click', function listener(element) {
+      const playerOne = players[0];
+      const playerTwo = players[1];
+
+      // checks if position is ocupied
+      if (element.target.innerText === 'X' || element.target.innerText === 'O') {
+        return;
+      }
+      element.target.innerText = currentMove;
+      board[element.target.id] = currentMove;
+
+      // checks for winner
+      if (gameBoard.checkWins(currentMove, board)) {
+        playBoard.removeEventListener('click', listener);
+        playerNames.innerHTML = `${currentPlayer} wins!`;
+        document.getElementById('restart-game').classList.remove('d-none');
+        return;
+      }
+
+      if (gameBoard.checkDraws(board)) {
+        playerNames.innerHTML = "It's a draw!";
+        playBoard.removeEventListener('click', listener);
+        document.getElementById('restart-game').classList.remove('d-none');
+      }
+
+      currentPlayer = (currentPlayer === playerOne ? playerTwo : playerOne);
+      currentMove = (currentMove === 'X' ? 'O' : 'X');
+    });
+  };
+
   toggleGame.onclick = () => {
     const boardWrap = document.getElementById('board');
     boardWrap.classList.toggle('d-none');
@@ -40,7 +72,7 @@ const displayController = (() => {
       const el = element;
       el.innerText = '';
     });
-    
+
     board = gameBoard.clearBoard(board);
     document.getElementById('restart-game').classList.add('d-none');
     play();
@@ -70,41 +102,6 @@ const displayController = (() => {
       ${players[0]} vs ${players[1]}`;
     play();
   };
-
-  
-  const play = () => {
-    let currentMove = 'X';
-    let currentPlayer = players[0];
-    // updates the board with players input
-    playBoard.addEventListener('click', function listener(element) {
-      const playerOne = players[0];
-      const playerTwo = players[1];
-      
-      // checks if position is ocupied
-      if (element.target.innerText === 'X' || element.target.innerText === 'O') {
-        return;
-      }
-      element.target.innerText = currentMove;
-      board[element.target.id] = currentMove;
-
-      // checks for winner
-      if (gameBoard.checkWins(currentMove, board)) {
-        playBoard.removeEventListener('click', listener);
-        playerNames.innerHTML = `${currentPlayer} wins!`;
-        document.getElementById('restart-game').classList.remove('d-none');
-        return;
-      }
-
-      if (gameBoard.checkDraws(board)) {
-        playerNames.innerHTML = "It's a draw!";
-        playBoard.removeEventListener('click', listener);
-        document.getElementById('restart-game').classList.remove('d-none');
-      }
-
-      currentPlayer = (currentPlayer === playerOne ? playerTwo : playerOne);
-      currentMove = (currentMove === 'X' ? 'O' : 'X');
-    });
-  }
 
   return { display };
 })();

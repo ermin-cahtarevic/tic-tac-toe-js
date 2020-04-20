@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-  let board =  ['', '', '', '', '', '', '', '', ''];
+  const board = ['', '', '', '', '', '', '', '', ''];
 
   // winning permutations
   const winningCombinations = [
@@ -31,7 +31,7 @@ const gameBoard = (() => {
     let result = false;
     if (board.every((position) => position !== '')) {
       result = true;
-    } 
+    }
     return result;
   };
 
@@ -46,4 +46,4 @@ const gameBoard = (() => {
   };
 })();
 
-export { gameBoard };
+export default gameBoard;

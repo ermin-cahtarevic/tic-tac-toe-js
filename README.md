@@ -14,7 +14,7 @@ In this project, we are building a Tic Tac Toe game (Again) but this time it’s
 
 ## Live Demo
 
-[Live Demo Link](https://raw.githack.com/ermin-cahtarevic/tic-tac-toe-js/develop/index.html)
+[Live Demo Link](https://raw.githack.com/ermin-cahtarevic/tic-tac-toe-js/develop/dist/index.html)
 
 ## Getting Started
 
